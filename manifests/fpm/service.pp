@@ -8,7 +8,7 @@ class php::fpm::service(
   service { $service_name:
     ensure    => $ensure,
     enable    => $enable,
-    restart   => "service ${service_name} reload",
+    restart   => "service ${service_name} restart",
     hasstatus => $has_status,
     require   => Package[$package]
   }
