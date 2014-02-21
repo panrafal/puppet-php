@@ -5,13 +5,14 @@ class php::fpm::service(
   $has_status   = $php::fpm::params::service_has_status
 ) inherits php::fpm::params {
 
+  Php::Config <| |> ~>
+  
   service { $service_name:
     ensure    => $ensure,
     enable    => $enable,
     restart   => "service ${service_name} restart",
     hasstatus => $has_status,
     require   => Package[$package],
-    subscribe => Php::Config <| |>
   }
 
   
