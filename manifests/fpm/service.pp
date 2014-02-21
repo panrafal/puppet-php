@@ -10,7 +10,10 @@ class php::fpm::service(
     enable    => $enable,
     restart   => "service ${service_name} restart",
     hasstatus => $has_status,
-    require   => Package[$package]
+    require   => Package[$package],
+    subscribe => Php::Config <| |>
   }
+
+  
 
 }
