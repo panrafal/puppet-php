@@ -48,7 +48,17 @@ class php::fpm(
   $service_name = $php::fpm::params::service_name
 ) inherits php::fpm::params {
 
-  include php::fpm::package
-  include php::fpm::service
+  class {'php::fpm::package':
+    package_ensure => $ensure,
+    package_name => $package,
+    package_provider => $provider,
+  }
+  class {'php::fpm::service':
+    ensure => $ensure ? {installed => 'running', present => 'running', absent => 'stopped'},
+    service_name => $service_name,
+  }
+  php::fpm::config {'settings':
+    config => $settings, 
+  }
 
 }

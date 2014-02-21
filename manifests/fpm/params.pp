@@ -44,7 +44,7 @@ class php::fpm::params inherits php::params {
   $package  			= 'php5-fpm'
   $provider 			= undef
   $inifile  			= '/etc/php5/fpm/php.ini'
-  $settings 			= { }
+  $settings 			= []
 
   $service_name 		  = 'php5-fpm'
   $service_ensure 		= 'running'
